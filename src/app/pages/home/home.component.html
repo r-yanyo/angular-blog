@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="content">
+    <div class="posts">
+      <div class="post-list">
+        @for (post of posts; track post.sys.id) {
+        <div class="post">
+          <div class="post-date">{{ post.fields.date }}</div>
+          <div class="post-title">
+            <a [routerLink]="['/posts', post.fields.date, post.sys.id]">
+              {{ post.fields.title }}
+            </a>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

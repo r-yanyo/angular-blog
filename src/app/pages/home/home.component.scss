@@ -1,0 +1,32 @@
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 800px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.post-list {
+  .post {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .post-date {
+    margin-right: 20px;
+    color: #666;
+  }
+
+  .post-title {
+    a {
+      color: #333;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

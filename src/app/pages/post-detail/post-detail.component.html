@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="content">
+    <article>
+      <h1>{{ post()?.fields?.title }}</h1>
+      <div class="date">{{ post()?.fields?.date }}</div>
+      <div class="content" [innerHTML]="content()"></div>
+    </article>
+  </div>
+</div>

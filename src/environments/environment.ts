@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   contentful: {
-    spaceId: process.env['CONTENTFUL_SPACE_ID'] || '',
-    accessToken: process.env['CONTENTFUL_ACCESS_TOKEN'] || ''
+    spaceId: 'wcj80e9o9v1k',
+    accessToken: 'G9jp8kEsyk-OzvAiDBlLaGfGJznOaUtQlnq0FscLLzs'
   }
 };

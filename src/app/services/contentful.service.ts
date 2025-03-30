@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ContentfulClientApi, createClient, Entry, EntryCollection } from 'contentful';
+import { ContentfulClientApi, createClient } from 'contentful';
 import { environment } from '../../environments/environment';
 import { BlogPostSkeleton } from '../types/contentful';
 
@@ -16,11 +16,11 @@ export class ContentfulService {
     });
   }
 
-  getEntries(): Promise<EntryCollection<BlogPostSkeleton>> {
+  getEntries() {
     return this.client.getEntries<BlogPostSkeleton>();
   }
 
-  getEntry(id: string): Promise<Entry<BlogPostSkeleton>> {
+  getEntry(id: string) {
     return this.client.getEntry<BlogPostSkeleton>(id);
   }
 }
