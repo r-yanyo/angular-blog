@@ -2,7 +2,7 @@
   <div class="content">
     <div class="posts">
       <div class="post-list">
-        @for (post of posts; track post.sys.id) {
+        @for (post of posts(); track post.sys.id) {
         <div class="post">
           <div class="post-date">{{ post.fields.date }}</div>
           <div class="post-title">
@@ -10,6 +10,13 @@
               {{ post.fields.title }}
             </a>
           </div>
+          @if (post.fields.tags) {
+          <div class="tags">
+            @for (tag of post.fields.tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+            }
+          </div>
+          }
         </div>
         }
       </div>

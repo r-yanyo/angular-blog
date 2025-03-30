@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
+  imports: [RouterLink],
   template: `
     <header class="header">
-      <nav>
-        <a routerLink="/">Home</a>
-        <a routerLink="/posts">Posts</a>
-      </nav>
+      <a class="header-title" routerLink="/">r-yanyoのブログ</a>
     </header>
   `,
   styles: [`
     .header {
-      padding: 1rem;
-      background-color: #f8f9fa;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: bold;
     }
     nav {
       display: flex;

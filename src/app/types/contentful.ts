@@ -1,15 +1,19 @@
-import { Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
 
 export interface BlogPostFields {
-  title: EntryFieldTypes.Text;
-  content: EntryFieldTypes.Text;
-  date: EntryFieldTypes.Date;
-  slug: EntryFieldTypes.Text;
+  title: string;
+  content: string;
+  date: string;
+  slug: string;
+  tags: string[];
 }
 
-export interface BlogPostSkeleton extends EntrySkeletonType {
-  contentTypeId: 'blogPost';
+export interface GetEntriesResponse {
+  items: Array<Post>;
+}
+
+export interface Post {
+  sys: {
+    id: string;
+  };
   fields: BlogPostFields;
 }
-
-export type BlogPost = Entry<BlogPostSkeleton>;

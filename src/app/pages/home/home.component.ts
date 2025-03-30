@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Entry } from 'contentful';
-import { ContentfulService } from '../../services/contentful.service';
-import { BlogPostSkeleton } from '../../types/contentful';
+import { ContentfulService, } from '../../services/contentful.service';
+import { Post } from '../../types/contentful';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +11,7 @@ import { BlogPostSkeleton } from '../../types/contentful';
 })
 export class HomeComponent {
   private contentful: ContentfulService;
-  posts: Entry<BlogPostSkeleton>[] = [];
+  posts = signal<Post[]>([]);
 
   constructor() {
     this.contentful = inject(ContentfulService);
@@ -22,7 +21,7 @@ export class HomeComponent {
   private async loadPosts() {
     try {
       const response = await this.contentful.getEntries();
-      this.posts = response.items;
+      this.posts.set(response.items);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
