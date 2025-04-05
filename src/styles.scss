@@ -1,4 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+html,
 body {
   margin: 0;
+}
+html {
+  font-family: "Arial", "Roboto", "YuGothic", "Yu Gothic";
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+body {
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+a:link {
+  color: #337ab7;
+  text-decoration: underline;
+}
+a:hover {
+  opacity: 0.5;
+}
+a:visited {
+  color: #337ab7;
 }

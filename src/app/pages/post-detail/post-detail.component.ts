@@ -1,16 +1,20 @@
-import { Component, inject, signal } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, makeStateKey, PLATFORM_ID, signal, TransferState } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ContentfulService } from '../../services/contentful.service';
 import { MarkdownService } from '../../services/markdown.service';
 import { Post } from '../../types/contentful';
 
+const BODY_KEY = makeStateKey<Post>('post');
+const CONTENT_KEY = makeStateKey<string>('content');
+
 @Component({
   selector: 'app-post-detail',
-  standalone: true,
   imports: [],
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.scss']
+  styleUrls: ['./post-detail.component.scss'],
 })
 export class PostDetailComponent {
   private route = inject(ActivatedRoute);
@@ -18,12 +22,23 @@ export class PostDetailComponent {
   private markdown = inject(MarkdownService);
   private meta = inject(Meta);
   private title = inject(Title);
+  private platformId = inject(PLATFORM_ID);
+  private http = inject(HttpClient);
   post = signal<Post | null>(null);
   content = signal<string>('');
-  isLoading = signal<boolean>(true);
+  transferState = inject(TransferState);
 
-  constructor() {
-    this.loadPost();
+  async ngOnInit() {
+    if (isPlatformServer(this.platformId)) {
+      await this.loadPost();
+      this.transferState.set(BODY_KEY, this.post());
+      this.transferState.set(CONTENT_KEY, this.content());
+    }
+
+    if (this.transferState.hasKey(BODY_KEY) && this.transferState.hasKey(CONTENT_KEY)) {
+      this.post.set(this.transferState.get(BODY_KEY, null));
+      this.content.set(this.transferState.get(CONTENT_KEY, ''));
+    }
   }
 
   private async loadPost() {
@@ -31,27 +46,26 @@ export class PostDetailComponent {
     if (!id) return;
 
     try {
-      this.isLoading.set(true);
-      this.post.set(await this.contentful.getEntry(id));
-      this.content.set(await this.markdown.parse(this.post()?.fields.content as string));
+      const post = await this.contentful.getEntry(id);
+      this.post.set(post);
+
+      const parsedContent = await this.markdown.parse(post.fields.content as string);
+      this.content.set(parsedContent);
 
       // メタ情報を更新
-      if (this.post()) {
-        const title = `${this.post()?.fields.title} | r-yanyoのブログ`;
-
+      if (post) {
+        const title = `${post.fields.title} | r-yanyoのブログ`;
         this.title.setTitle(title);
         this.meta.updateTag({ property: 'og:title', content: title });
         this.meta.updateTag({ name: 'twitter:title', content: title });
 
-        const description = this.post()!.fields.content.substring(0, 160);
+        const description = post.fields.content.substring(0, 160);
         this.meta.updateTag({ name: 'description', content: description });
         this.meta.updateTag({ property: 'og:description', content: description });
         this.meta.updateTag({ name: 'twitter:description', content: description });
       }
     } catch (error) {
       console.error('Error fetching post:', error);
-    } finally {
-      this.isLoading.set(false);
     }
   }
 }

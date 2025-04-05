@@ -8,7 +8,6 @@ import { GetEntriesResponse, Post } from '../types/contentful';
 })
 export class ContentfulService {
   private client: ContentfulClientApi<undefined>;
-
   constructor() {
     this.client = createClient({
       space: environment.contentful.spaceId,

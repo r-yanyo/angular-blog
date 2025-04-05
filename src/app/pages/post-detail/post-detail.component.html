@@ -1,9 +1,6 @@
 <div class="container">
-  <div class="loading" [class.fade-out]="!isLoading()">
-    <div class="spinner"></div>
-    <p>Loading...</p>
-  </div>
-  <article [class.fade-in]="!isLoading()">
+  @if (post()) {
+  <article>
     <h1>{{ post()?.fields?.title }}</h1>
     <div class="meta">
       <div class="date">{{ post()?.fields?.date }}</div>
@@ -17,4 +14,5 @@
     </div>
     <div class="content" [innerHTML]="content()"></div>
   </article>
+  }
 </div>

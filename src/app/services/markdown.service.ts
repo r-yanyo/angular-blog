@@ -19,7 +19,7 @@ export class MarkdownService {
     }));
   }
 
-  parse(markdown: string): string | Promise<string> {
+  parse(markdown: string) {
     return marked.parse(markdown);
   }
 }

@@ -6,7 +6,7 @@
         <div class="post">
           <div class="post-date">{{ post.fields.date }}</div>
           <div class="post-title">
-            <a [routerLink]="['/posts', post.fields.date, post.sys.id]">
+            <a href="/posts/{{ post.fields.date }}/{{ post.sys.id }}">
               {{ post.fields.title }}
             </a>
           </div>

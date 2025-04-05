@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "NODE_OPTIONS=--max-old-space-size=16384 ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-blog": "node dist/angular-blog/server/server.mjs"
+    "serve:ssr:angular-blog": "node dist/angular-blog/server/server.mjs",
+    "serve": "npx http-server dist/angular-blog/browser"
   },
   "private": true,
   "dependencies": {
