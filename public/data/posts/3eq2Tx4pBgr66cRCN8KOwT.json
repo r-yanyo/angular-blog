@@ -1,0 +1,6 @@
+{
+  "id": "3eq2Tx4pBgr66cRCN8KOwT",
+  "title": "道のりというWebサービスをVue.js+Ruby on Railsで作った。",
+  "date": "2018-07-14",
+  "content": "<p><a href=\"https://michinori.herokuapp.com/\">「道のり」</a>というサービスを作りました。<br>どういうサービスかというと、これまでの人生で努力してきた体験をシェアしようというものです。</p>\n<p><img src=\"//images.ctfassets.net/wcj80e9o9v1k/6NJgdGQPDTEna1MqeUKDGg/6abddea19027ae49c465cd070c9b2d42/michinori.png\" alt=\"michinori\"></p>\n<p>実は<a href=\"https://storys.jp/\">「storys」</a>という似たサービスが既にあったんですね。</p>\n<p>作り終えた後にこのサービスを知ったので、やはり \b 世の中には同じようなアイデアを思いつく人はいるんだなと思いました（完成度は私のものとは全然違いますが）。</p>\n<p>アプリを作ったのはほぼ初めてなので、これからもどんどん作っていけたらいいなぁ。</p>\n"
+}

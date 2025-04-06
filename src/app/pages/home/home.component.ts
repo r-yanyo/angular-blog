@@ -1,5 +1,6 @@
 import { isPlatformServer } from '@angular/common';
 import { Component, inject, makeStateKey, PLATFORM_ID, signal, TransferState } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { ContentfulService, } from '../../services/contentful.service';
 import { Post } from '../../types/contentful';
 
@@ -14,9 +15,9 @@ export class HomeComponent {
   private contentful = inject(ContentfulService);
   posts = signal<Post[]>([]);
   transferState = inject(TransferState);
-
+  platformId = inject(PLATFORM_ID);
   async ngOnInit() {
-    if (isPlatformServer(PLATFORM_ID)) {
+    if (isPlatformServer(this.platformId)) {
       await this.loadPosts();
       this.transferState.set(POSTS_KEY, this.posts());
     }
@@ -28,8 +29,8 @@ export class HomeComponent {
 
   private async loadPosts() {
     try {
-      const response = await this.contentful.getEntries();
-      this.posts.set(response.items);
+      const entries = await firstValueFrom(this.contentful.getEntries());
+      this.posts.set(entries);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }

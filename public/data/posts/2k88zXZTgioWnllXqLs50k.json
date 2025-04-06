@@ -1,0 +1,6 @@
+{
+  "id": "2k88zXZTgioWnllXqLs50k",
+  "title": "「JavaScript: The Good Parts」を読んだ",
+  "date": "2017-11-27",
+  "content": "<h2>タイトル</h2>\n<p>JavaScript: The Good Parts 「良いパーツ」によるベストプラクティス</p>\n<h2>ページ数と読んだ時間</h2>\n<p>170ページぐらいと5時間ぐらい</p>\n<h2>内容</h2>\n<pre><code>- 1章 良いパーツ\n- 2章 文法\n- 3章 オブジェクト\n- 4章 関数\n- 5章 継承\n- 6章 配列\n- 7章 正規表現\n- 8章 メソッド\n- 9章 スタイル\n- 10章 美しい機能たち\n- 付録A ひどいパーツ\n- 付録B 悪いパーツ\n- 付録C JSLint\n- 付録D 鉄道ダイアグラム\n- 付録E JSON\n</code></pre>\n<h2>感想</h2>\n<p>この本はJavaScript初級者向けの本であり初心者向けではない、とまえがきに書いてある。先に<a href=\"https://www.amazon.co.jp/dp/477414813X\">パーフェクトJavaScript</a>を読んでいてJavaScriptの基礎はだいたい知っていたので、この本の内容はちょうど良かったかなと思う。<br>JavaScriptの擬似クラスをあまり使ったことが無いので、5章は流し読みした。JavaScriptの良いパーツについても載っているが、最後の方にある付録にはJavaScriptのひどいパーツと悪いパーツが載っていて、それらは単純に使わないだけでコードが良くなるので、本編よりも付録の方が役に立つかもしれない。</p>\n"
+}

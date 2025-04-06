@@ -1,12 +1,12 @@
 <div class="container">
   @if (post()) {
   <article>
-    <h1>{{ post()?.fields?.title }}</h1>
+    <h1>{{ post()?.title }}</h1>
     <div class="meta">
-      <div class="date">{{ post()?.fields?.date }}</div>
-      @if (post()?.fields?.tags) {
+      <div class="date">{{ post()?.date }}</div>
+      @if (post()?.tags) {
       <div class="tags">
-        @for (tag of post()?.fields?.tags; track tag) {
+        @for (tag of post()?.tags; track tag) {
         <span class="tag">{{ tag }}</span>
         }
       </div>

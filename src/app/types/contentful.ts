@@ -1,19 +1,7 @@
-
-export interface BlogPostFields {
+export interface Post {
+  id: string;
   title: string;
   content: string;
   date: string;
-  slug: string;
-  tags: string[];
-}
-
-export interface GetEntriesResponse {
-  items: Array<Post>;
-}
-
-export interface Post {
-  sys: {
-    id: string;
-  };
-  fields: BlogPostFields;
+  tags?: string[];
 }

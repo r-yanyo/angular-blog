@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NODE_OPTIONS=--max-old-space-size=16384 ng serve",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:angular-blog": "node dist/angular-blog/server/server.mjs",
-    "serve": "npx http-server dist/angular-blog/browser"
+    "serve": "npx http-server dist/angular-blog/browser",
+    "generate-posts": "node --env-file=.env scripts/generate-posts.js"
   },
   "private": true,
   "dependencies": {
