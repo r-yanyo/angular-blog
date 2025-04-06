@@ -2,5 +2,9 @@
   "id": "m0Lz9KnLpToQBAFG4RwvP",
   "title": "初めてオープンソースにPull Request出してみた",
   "date": "2018-04-24",
+  "tags": [
+    "git",
+    "JavaScript"
+  ],
   "content": "<p>春休みから某地元企業でアルバイトをさせてもらっていて、その業務の中で<a href=\"http://leafletjs.com/index.html\">Leaflet</a>というマップを簡単に描ける JS のライブラリを使用しています。</p>\n<p>さらにそのライブラリの拡張として<a href=\"https://github.com/Leaflet/Leaflet.markercluster\">Leaflet.markercluster</a>というライブラリがあります。これはズームアウトした時に地図上で重なってしまうオブジェクトを集約表示するためのライブラリです。</p>\n<p><strong>スター数は 2018 年 4 月現在で 2,128</strong>。ちなみに Leaflet 自体はスター数２万越えなので結構大きい。以下の図が Leaflet.markercluster の例です。</p>\n<p><img src=\"//images.ctfassets.net/wcj80e9o9v1k/Iehf4eobZHUvbpw0H7gMh/04901ee79230091a2ffe0ab920e8b5a8/markercluster__1_.png\" alt=\"markercluster\"></p>\n<p>このライブラリを使っている時にたまたま簡単なバグを見つけたので人生で初めて OSS に Pull Request を送ってみました。</p>\n<p>どんなバグかというと以下のように、変数に数値が入っていたらその値を使い、null や undefined だった場合は 1 を代入するというコードがあります。</p>\n<p>しかし、これには問題があって<strong>変数の値が 0 だった場合は False と見なされて 0 ではなく 1 が代入されてしまいます</strong></p>\n<pre><code>this.options.opacityWhenUnclustered = this.options.opacity || 1;\n</code></pre>\n<p>ということで以下のように変更します。つまり変数の中身が数字だったらそれを使用し、そうでない場合は 1 を代入します。</p>\n<pre><code>this.options.opacityWhenUnclustered = Number.isFinite(this.options.opacity) ? this.options.opacity : 1;\n</code></pre>\n<p>あんまり大きいバグでは無いですが、むしろ小さいバグの方がプルリク出しやすいので、せっかくだから Pull Request 出してみよう！という気持ちになりました。</p>\n<p>ちょうど e-navigator<a href=\"/p/accomplish-e-navigator\">（前の記事を参照）</a>を行った時に Pull Request の正しい出し方を教わっていたのですが、実際やるとなると正直メンドくさい。</p>\n<p>なので、「適当に Pull Request 出して、何か言われたら書き直すか〜」ぐらいの気持ちで書きました。<a href=\"https://github.com/Leaflet/Leaflet.markercluster/pull/890#issuecomment-382884808\">実際の Pull Request</a></p>\n<p><strong>そしたらまさかのマージ</strong>。Pull Request を送った次の日には反応がありました。</p>\n<p>初めてだったので良い経験できたな〜という感じです。ただ、今回は良かったものの、次 Pull Request 出す時はしっかりテストしてから出さなアカンなと思いました。</p>\n"
 }

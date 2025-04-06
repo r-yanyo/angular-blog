@@ -2,5 +2,8 @@
   "id": "7AP5InIkosXKauqReGKE1G",
   "title": "gitで便利なコマンドのメモ",
   "date": "2018-03-25",
+  "tags": [
+    "git"
+  ],
   "content": "<p>最近個人的にgitとかGitHubを使うことが多くなったのでメモ。</p>\n<h2>直前の「git add」の取り消し</h2>\n<pre><code>git reset HEAD\n</code></pre>\n<p>使用方法: git addを間違えて打ってしまった時に使う</p>\n<pre><code>git reset &quot;コミットのハッシュ値&quot;\n</code></pre>\n<p>でそのコミットまで戻ることができ、HEADは直前のコミットを意味するので、直前にステージングしたものを戻せる。</p>\n<h2>ファイルを特定のコミットの状態まで戻す</h2>\n<pre><code>git log #戻りたいコミットのハッシュ値の確認\ngit reset --hard &quot;コミットのハッシュ値&quot;\n</code></pre>\n<p>使用方法: 作業していた内容が大幅に間違っていた（バグった）時に前の状態に戻したい時に使う</p>\n<p>git reset に　--hardオプションを付けると、ファイルの内容とステージング状態の遡った分は消える。--softだと指定したコミットの状態に戻るが、遡った分は消えない。</p>\n<p>[参考] <a href=\"https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe#2-git-reset%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99\">git resetを使いこなす</a></p>\n<h2>特定のコミットの変更点を見る</h2>\n<pre><code>git diff &quot;コミットのハッシュ値&quot;^ &quot;コミットのハッシュ値&quot;\n</code></pre>\n<p>&quot;コミットのハッシュ値&quot;^　は１個前のコミットを意味する。^^は２個前。</p>\n<h2>２個以上前のコミットメッセージを変更</h2>\n<pre><code>git rebase -i HEAD~3\n\n# 該当コミットのpickをeditに変更\n\ngit commit --amend\ngit rebase —continue\n</code></pre>\n<p>使用方法: gitアカウントを使い分けている時に、違うアカウントでコミットしまくってしまった。コミットのAuthorを書き換えたい時に使う。</p>\n<p>１個前のコミットメッセージはgit commit --amendで変更可能だが、それより前のコミットメッセージを変更するにはこれを使う。</p>\n<h2>特定のファイルのコミットログを見る</h2>\n<pre><code>git log “ファイルパス”\n</code></pre>\n<p>git log -p “ファイルパス” pを付けるとファイルの変更箇所が見れる。</p>\n<h2>色々操作をミスったら戻す</h2>\n<pre><code>git reflog\ngit reset —hard HEAD@{reflogで見た番号}\n</code></pre>\n<p>使用方法: 前述のgit reset --hardで前の状態に戻したが、やっぱり戻すのを辞めたくなった時に使う。</p>\n<p>git reflogでgit resetなどの操作履歴を表示することが出来る。git resetでその操作履歴を無かったことにする。</p>\n"
 }

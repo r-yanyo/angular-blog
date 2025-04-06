@@ -49,7 +49,7 @@ async function generatePostFiles() {
     // 個別のエントリーを処理し、ファイルに保存
     for (const entry of entries.items) {
       const { id } = entry.sys;
-      const { title, content, date } = entry.fields;
+      const { title, content, date, tags } = entry.fields;
 
       // コンテンツをHTMLに変換
       const htmlContent = marked(content || '');
@@ -59,6 +59,7 @@ async function generatePostFiles() {
         id,
         title,
         date,
+        tags,
         content: htmlContent,
       };
 
@@ -73,6 +74,7 @@ async function generatePostFiles() {
       id: entry.sys.id,
       title: entry.fields.title,
       date: entry.fields.date,
+      tags: entry.fields.tags,
       // コンテンツ全体は含めない
     }));
 

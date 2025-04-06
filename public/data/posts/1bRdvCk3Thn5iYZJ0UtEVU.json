@@ -2,5 +2,10 @@
   "id": "1bRdvCk3Thn5iYZJ0UtEVU",
   "title": "Nuxt.jsでブログを作り直した。",
   "date": "2018-11-27",
+  "tags": [
+    "JavaScript",
+    "blog",
+    "Nuxt.js"
+  ],
   "content": "<p>Nuxt.js でブログを作り直している途中。</p>\n<p>Next.js から Nuxt.js へ。</p>\n<p>heroku から netlify へ。</p>\n"
 }

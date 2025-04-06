@@ -1,24 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ContentfulClientApi, createClient } from 'contentful';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 import { Post } from '../types/contentful';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentfulService {
-  private client: ContentfulClientApi<undefined>;
   private http = inject(HttpClient);
 
-  constructor() {
-    this.client = createClient({
-      space: environment.contentful.spaceId,
-      accessToken: environment.contentful.accessToken
-    });
-  }
+  constructor() { }
 
   getEntries(): Observable<Post[]> {
     // 静的JSONファイルからエントリーリストを取得
